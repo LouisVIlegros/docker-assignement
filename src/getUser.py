@@ -1,3 +1,4 @@
 import getpass
 username = getpass.getuser()
-print(username)
+
+print("You currently run with user : {} ".format(username))
