@@ -1,0 +1,13 @@
+sudo : required
+services :
+    - docker
+before_install :
+    - docker build -t louis6/get-user .
+
+script : 
+    docker run -e CI=true louis6/get-user
+
+after_sucess :
+    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker build -t louis6docker/get-user .
+    - docker push louis6docker/get-user 
